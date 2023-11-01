@@ -2,6 +2,13 @@
 name = "fileman_rs"
 version = "0.1.0"
 edition = "2021"
+authors = ["Sam Wyss"]
+description = "A high-performance file management system for working with large quantities of files."
+license = "BSD-3"
+repository = "https://github.com/samwyss/fileman_rs"
+readme = "./README.md"
+keywords = ["rust", "file", "management", "organization"]
+categories = ["command-line-utilities"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
