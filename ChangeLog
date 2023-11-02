@@ -1,0 +1,11 @@
+* [33mbeceb0d[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m updated README.md noting roadmap page
+* [33m6b40200[m updated README.md with information on how to contribute
+* [33m53bffb0[m added pull_request.md
+* [33ma748a02[m added issue_report.md
+* [33m39e1d48[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m updated licence in Cargo.toml to use proper spdx naming
+* [33m73146f4[m modified description
+* [33m6aeac04[m added metadata to Cargo.toml
+* [33m80510ed[m added unversioned files to .idea directory
+* [33mcc3d870[m Create rust.yml
+* [33m69fdff7[m added initial cargo binary tooling
+* [33m125ea3e[m Initial commit
