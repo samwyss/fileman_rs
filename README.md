@@ -17,6 +17,8 @@ Please check back soon
 ___
 
 ## How to Contribute
-To report bugs/issues, please [submit an issue report](https://github.com/samwyss/fileman_rs/issues) using [this template](.github/templates/issue_report.md). To request features, please [submit a pull request](https://github.com/samwyss/fileman_rs/pulls) using [this template](./.github/templates/pull_request.md). 
+To report bugs/issues, please [submit an issue report](https://github.com/samwyss/fileman_rs/issues) using [this template](.github/templates/issue_report.md). To request features, please [submit a pull request](https://github.com/samwyss/fileman_rs/pulls) using [this template](./.github/templates/pull_request.md).
+
+This project's [current roadmap](https://github.com/samwyss/fileman_rs/projects?query=is%3Aopen) is visible on the [GitHub homepage](https://github.com/samwyss/fileman_rs)
 
 ___
