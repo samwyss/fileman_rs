@@ -1,12 +1,79 @@
-* [33m7c04da6[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m added ChangeLog
-* [33mbeceb0d[m updated README.md noting roadmap page
-* [33m6b40200[m updated README.md with information on how to contribute
-* [33m53bffb0[m added pull_request.md
-* [33ma748a02[m added issue_report.md
-* [33m39e1d48[m updated licence in Cargo.toml to use proper spdx naming
-* [33m73146f4[m modified description
-* [33m6aeac04[m added metadata to Cargo.toml
-* [33m80510ed[m added unversioned files to .idea directory
-* [33mcc3d870[m Create rust.yml
-* [33m69fdff7[m added initial cargo binary tooling
-* [33m125ea3e[m Initial commit
+commit f848d8c (HEAD -> main, origin/main, origin/HEAD)
+Author: sjwys <sjwyss@outlook.com>
+Date:   Wed Nov 1 20:24:07 2023 -0400
+
+    removed bars on README.md and updated ChangeLog
+
+commit 7c04da6
+Author: sjwys <sjwyss@outlook.com>
+Date:   Wed Nov 1 20:22:53 2023 -0400
+
+    added ChangeLog
+
+commit beceb0d
+Author: sjwys <sjwyss@outlook.com>
+Date:   Wed Nov 1 20:21:10 2023 -0400
+
+    updated README.md noting roadmap page
+
+commit 6b40200
+Author: sjwys <sjwyss@outlook.com>
+Date:   Wed Nov 1 20:17:47 2023 -0400
+
+    updated README.md with information on how to contribute
+
+commit 53bffb0
+Author: sjwys <sjwyss@outlook.com>
+Date:   Wed Nov 1 20:16:42 2023 -0400
+
+    added pull_request.md
+
+commit a748a02
+Author: sjwys <sjwyss@outlook.com>
+Date:   Wed Nov 1 20:16:24 2023 -0400
+
+    added issue_report.md
+
+commit 39e1d48
+Author: sjwys <sjwyss@outlook.com>
+Date:   Wed Nov 1 19:51:00 2023 -0400
+
+    updated licence in Cargo.toml to use proper spdx naming
+
+commit 73146f4
+Author: sjwys <sjwyss@outlook.com>
+Date:   Wed Nov 1 19:49:19 2023 -0400
+
+    modified description
+
+commit 6aeac04
+Author: sjwys <sjwyss@outlook.com>
+Date:   Wed Nov 1 19:48:41 2023 -0400
+
+    added metadata to Cargo.toml
+
+commit 80510ed
+Author: sjwys <sjwyss@outlook.com>
+Date:   Wed Nov 1 19:45:26 2023 -0400
+
+    added unversioned files to .idea directory
+
+commit cc3d870
+Author: Sam Wyss <103882894+samwyss@users.noreply.github.com>
+Date:   Wed Nov 1 19:38:25 2023 -0400
+
+    Create rust.yml
+    
+    added initial Github actions
+
+commit 69fdff7
+Author: sjwys <sjwyss@outlook.com>
+Date:   Wed Nov 1 19:36:56 2023 -0400
+
+    added initial cargo binary tooling
+
+commit 125ea3e
+Author: Sam Wyss <103882894+samwyss@users.noreply.github.com>
+Date:   Wed Nov 1 19:32:16 2023 -0400
+
+    Initial commit
