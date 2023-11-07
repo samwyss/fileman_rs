@@ -24,6 +24,10 @@ impl Config {
     /// - provided task does not match any defined task
     /// - error propagated upward from subsequent function calls
     pub fn new(mut args: impl Iterator<Item = String>) -> Result<Config, &'static str> {
+
+        //skips the path to the compiled file (first argument passed in)
+        args.next();
+
         // errors if there is no task specified
         let task = match args.next() {
             Some(arg) => arg,
