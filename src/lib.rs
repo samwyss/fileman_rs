@@ -70,6 +70,7 @@ mod tests {
 
         // args iterator
         let args_2 = [
+            String::from("foo"),
             String::from("organize"),
             String::from("./src"),
             String::from("./src/organize"),
