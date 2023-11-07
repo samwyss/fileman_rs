@@ -39,7 +39,7 @@ impl Config {
                 Ok(Self::Organize(organize_task))
             }
             // errors if desired task is not defined
-            _ => return Err("provided task {} did not match any defined tasks"),
+            _ => return Err("provided task did not match any defined tasks"),
         }
     }
 }
