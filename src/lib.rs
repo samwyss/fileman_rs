@@ -1,18 +1,27 @@
 #![crate_name = "fileman_rs"]
 //! A high-performance file management system for working with large quantities of files written in Rust.
 
-// binds to the organize module
+// definition for all task modules
 mod organize;
 
-// configuration enum: all possible tasks are given their own variant
+pub trait RunTask {
+    /// task definition that allows Config to run a task outlined in a task module
+    ///
+    /// # Arguments
+    ///
+    /// `&self` - a reference to Config enum
+    fn run_task(&self) -> Result<(), String>;
+}
+
 #[derive(Debug, PartialEq, Eq)]
 pub enum Config {
+    /// configuration enum, all tasks are given their own variant
     // variant to run the organize task
     Organize(organize::OrganizeTask),
 }
 
 impl Config {
-    /// Config enum initializer
+    /// Config enum constructor
     ///
     /// # Arguments
     ///
@@ -24,7 +33,6 @@ impl Config {
     /// - provided task does not match any defined task
     /// - error propagated upward from subsequent function calls
     pub fn new(mut args: impl Iterator<Item = String>) -> Result<Config, &'static str> {
-
         //skips the path to the compiled file (first argument passed in)
         args.next();
 
@@ -44,6 +52,14 @@ impl Config {
             }
             // errors if desired task is not defined
             _ => return Err("provided task did not match any defined tasks"),
+        }
+    }
+}
+
+impl RunTask for Config {
+    fn run_task(&self) -> Result<(), String> {
+        match self {
+            Config::Organize(task) => task.run_task(),
         }
     }
 }

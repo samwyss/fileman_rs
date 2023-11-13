@@ -2,6 +2,8 @@
 use std::path::PathBuf;
 //use std::{fs,io};
 
+use super::RunTask;
+
 /// Organize_Task struct: PathBufs correspond to source and target directories
 #[derive(Debug, PartialEq, Eq)]
 pub struct OrganizeTask {
@@ -10,6 +12,14 @@ pub struct OrganizeTask {
 
     /// PathBuf to directory containing organized files
     target: PathBuf,
+}
+
+/// RunTask trait implementation for OrganizeTask struct
+impl RunTask for OrganizeTask {
+    fn run_task(&self) -> Result<(), String> {
+        println!("hello world!");
+        Ok(())
+    }
 }
 
 impl OrganizeTask {
@@ -22,9 +32,9 @@ impl OrganizeTask {
     /// # Errors
     ///
     /// - `./source/` path not provided
-    /// -`./source/` does not correspond to valid directory
+    /// - `./source/` does not correspond to valid directory
     /// - `./target/` path not provided
-    /// -`./target/` does not correspond to valid directory
+    /// - `./target/` does not correspond to valid directory
     pub fn new(mut args: impl Iterator<Item = String>) -> Result<Self, &'static str> {
         // ensures source path is provided
         let source = match args.next() {
@@ -65,9 +75,9 @@ mod tests {
     /// # Errors
     ///
     /// - `./source/` path not provided
-    /// -`./source/` does not correspond to valid directory
+    /// - `./source/` does not correspond to valid directory
     /// - `./target/` path not provided
-    /// -`./target/` does not correspond to valid directory
+    /// - `./target/` does not correspond to valid directory
     #[test]
     fn organize_task_new_with_valid_args() {
         // args iterator
