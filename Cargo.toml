@@ -1,6 +1,6 @@
 [package]
 name = "fileman_rs"
-version = "0.1.5"
+version = "0.1.6"
 edition = "2021"
 authors = ["Sam Wyss"]
 description = "A high-performance file management system for working with large quantities of files written in Rust."

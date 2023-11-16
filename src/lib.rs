@@ -1,7 +1,10 @@
 #![crate_name = "fileman_rs"]
 //! A high-performance file management system for working with large quantities of files written in Rust.
 
-// definition for all task modules
+// declaration of module containing useful tools for various tasks
+mod tools;
+
+// declaration for all task modules
 mod organize;
 
 pub trait RunTask {

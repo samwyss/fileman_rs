@@ -1,7 +1,10 @@
+// declare cargo crates
 //use std::fs::read_dir;
 use std::path::PathBuf;
 //use std::{fs,io};
 
+// declare local code
+//use super::tools::collect_files;
 use super::RunTask;
 
 /// Organize_Task struct: PathBufs correspond to source and target directories
@@ -161,7 +164,6 @@ mod tests {
     /// - OrganizeTask::new() does not error if the target path is not provided
     #[test]
     fn organize_task_new_target_not_provided() {
-        // args iterator
         // args iterator
         let mut args = [
             String::from("foo"),
