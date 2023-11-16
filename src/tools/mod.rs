@@ -1,4 +1,4 @@
-use std::fs::{create_dir, create_dir_all, read_dir, remove_dir_all, remove_file, File, ReadDir};
+use std::fs::{read_dir, ReadDir};
 use std::io;
 use std::path::PathBuf;
 
@@ -36,6 +36,7 @@ pub fn collect_files<'a>(
 #[cfg(test)]
 mod tests {
     use super::*;
+    use std::fs::{create_dir, create_dir_all, remove_dir_all, remove_file, File};
 
     /// verifies collect_files() errors if source path is not a valid directory
     ///
