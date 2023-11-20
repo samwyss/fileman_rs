@@ -1,9 +1,13 @@
 // declare cargo crates
 use std::collections::HashMap;
+use std::ffi::OsString;
+use std::fs::{create_dir_all, rename};
+use std::io;
 use std::path::PathBuf;
+use time::macros::format_description;
 
 // declare local code
-use super::tools::collect_files;
+use super::tools::{collect_files, get_num_files};
 use super::RunTask;
 
 /// Organize_Task struct: PathBufs correspond to source and target directories
@@ -18,35 +22,75 @@ pub struct OrganizeTask {
 
 /// RunTask trait implementation for OrganizeTask struct
 impl RunTask for OrganizeTask {
-    fn run_task(&self) -> Result<(), String> {
+    fn run_task(&self) -> Result<(), io::Error> {
         // empty vector to store PathBufs of found files
-        let mut vec: Vec<PathBuf> = Vec::new();
+        let mut file_vec: Vec<PathBuf> = Vec::new();
 
-        // iterator containing all files found at the source directory
-        let _files = match collect_files(&self.source, &mut vec) {
-            Ok(files) => files.iter(),
-            Err(err) => return Err(err.to_string()),
-        };
+        // iterator containing PathBufs for all files found at the source directory
+        let files = collect_files(&self.source, &mut file_vec)?.iter();
 
-        // cache to hold the number of files in a given directory, used for naming files
-        let _count_cache: HashMap<PathBuf, u64> = HashMap::new();
+        /* cache to hold the number of files in a given directory, used for naming files, string is
+        used as PathBufs map to different keys, and OsString does not implement the Eq and Hash
+        Traits, this will cause paths containing non unicode to break when unwrapped below however
+        this appears to be rare */
+        let mut count_cache: HashMap<String, usize> = HashMap::new();
 
-        // iterate through files
-        // get the month and year a file was last modified
-        // check the hashmap for a PathBuf containing said month and year
-        // if found
-        // lookup number in hashmap and increment
-        // else
-        // check to see if ./YYYY-MM folder exists in target
-        // if found
-        // count the number of items in folder and add to hashmap + 1
-        // else
-        // create folder using create_dir_all
-        // create kvp in hashmap setting value to 1
+        // temporary counter to hold the number of files in a directory
+        let mut count: usize;
 
-        // move file to target using YYYY-MM_#
-        // may want to use rename if on same file system and fs::copy / fs::remove_file if not
-        // look into partial copies
+        // iterate over collected files
+        for file in files {
+            // creation date of file
+            let c_date: time::OffsetDateTime = file.metadata()?.created()?.into();
+
+            // formatted creation date PathBuf
+            let fc_date = PathBuf::from(
+                c_date
+                    .format(&format_description!("[year]/[year]-[month]"))
+                    .unwrap(),
+            ); // assumes .format will not error which is reasonable
+
+            // target directory / file PathBuf
+            let mut target: PathBuf = [&self.target, &fc_date].iter().collect();
+            let key = &target.to_str().unwrap().to_string();
+
+            // check the hashmap to see if target_folder exists
+            if count_cache.contains_key(key) {
+                // if exists increment the counter
+                count_cache
+                    .entry(key.clone())
+                    .and_modify(|count| *count += 1);
+            } else {
+                if target.exists() {
+                    // get the number of files in the target directory + 1
+                    count = get_num_files(&target)? + 1;
+                } else {
+                    // since ./YYYY/YYYY-MM folder(s) does/do not exist in target directory yet, create it/them
+                    create_dir_all(&target)?;
+
+                    // set the counter to one as this is a new directory
+                    count = 1;
+                }
+                count_cache.insert(key.clone(), count);
+            }
+
+            // add final formatting to target file for move
+            target.push(format!(
+                "{}_{}.{}",
+                &key[key.len() - 7..],
+                count_cache.get(&key.clone()).unwrap() - 1, //this will not error as above code ensures that this key is valid
+                file.extension()
+                    .unwrap_or(&OsString::from("")) // handles no file extension case
+                    .to_str()
+                    .unwrap()
+                    .to_string()
+            ));
+
+            // move file to target using YYYY-MM_#
+            // may want to use rename if on same file system and fs::copy / fs::remove_file if not
+            // look into partial copies
+            rename(file, target)?;
+        }
 
         Ok(())
     }
