@@ -4,7 +4,7 @@
 // declare cargo crates
 use std::io;
 
-// declare local code
+// declare local modules
 mod organize;
 mod tools;
 

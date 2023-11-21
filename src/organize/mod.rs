@@ -7,7 +7,8 @@ use std::path::PathBuf;
 use time::macros::format_description;
 
 // declare local code
-use super::tools::{collect_files, get_num_files};
+use super::tools::collect_files::collect_files;
+use super::tools::get_num_files::get_num_files;
 use super::RunTask;
 
 /// Organize_Task struct: PathBufs correspond to source and target directories
