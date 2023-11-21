@@ -282,4 +282,30 @@ mod tests_get_num_files {
 
         assert!(test_result.is_err())
     }
+
+    /// verifies get_num_files() returns 0 if `path_buf` does not contain any files
+    ///
+    /// # Arguments
+    ///
+    /// none
+    ///
+    /// # Errors
+    ///
+    /// - get_num_files() does not return zero if `path_buf` points to an empty directory
+    #[test]
+    fn get_num_files_empty_dir() {
+        // create inputs
+        let path_buf = PathBuf::from("./get_num_files_empty_dir_test/");
+
+        // create mock directory
+        create_dir(&path_buf).unwrap();
+
+        // run test
+        let test_result: usize = get_num_files(&path_buf).unwrap();
+
+        // clean up mock directory
+        remove_dir_all(path_buf).unwrap();
+
+        assert_eq!(test_result, 0);
+    }
 }
