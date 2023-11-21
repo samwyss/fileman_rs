@@ -30,7 +30,7 @@ pub fn get_num_files(path_buf: &PathBuf) -> io::Result<usize> {
 }
 
 #[cfg(test)]
-mod tests_get_num_files {
+mod tests {
     use super::*;
     use std::fs::{create_dir, create_dir_all, remove_dir_all, remove_file, File};
 

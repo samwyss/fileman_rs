@@ -34,7 +34,7 @@ pub fn collect_files<'a>(
 }
 
 #[cfg(test)]
-mod tests_collect_files {
+mod tests {
     use super::*;
     use std::fs::{create_dir, create_dir_all, remove_dir_all, remove_file, File};
 
