@@ -21,8 +21,23 @@ pub struct OrganizeTask {
     target: PathBuf,
 }
 
-/// RunTask trait implementation for OrganizeTask struct
+/// RunTask trait implementation for Organize variant of Config enum
 impl RunTask for OrganizeTask {
+    /// run_task() driver function for Organize variant of Config, organizes files from &self.source into &self.target based on files last modification date.
+    /// This function will change to using creation dates whenever it is possible to move files across file systems (determine if files exist on same fs)
+    ///
+    /// # Arguments
+    ///
+    /// `&self` reference to Config enum
+    ///
+    /// # Errors
+    ///
+    /// - collect_files() call fails
+    /// - metadata is not retrievable for a given file
+    /// - modification date is not retrievable for a given file
+    /// - get_num_files() call fails
+    /// - fs::create_dir_all() call fails
+    /// - fs::rename() call fails
     fn run_task(&self) -> Result<(), io::Error> {
         // empty vector to store PathBufs of found files
         let mut file_vec: Vec<PathBuf> = Vec::new();
@@ -42,7 +57,7 @@ impl RunTask for OrganizeTask {
         // iterate over collected files
         for file in files {
             // creation date of file
-            let c_date: time::OffsetDateTime = file.metadata()?.created()?.into();
+            let c_date: time::OffsetDateTime = file.metadata()?.modified()?.into();
 
             // formatted creation date PathBuf
             let fc_date = PathBuf::from(

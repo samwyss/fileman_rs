@@ -9,8 +9,9 @@ use std::path::PathBuf;
 ///
 /// # Errors
 ///
-/// - `path_buf` does not correspond to a directory
-/// - `path_buf` corresponds to a protected object on the file system or maps to a broken link
+/// -`path_buf` does not correspond to a directory
+/// -`path_buf` corresponds to a protected object on the file system or maps to a broken link
+/// - path from item at `path_buf` cannot be obtained
 pub fn get_num_files(path_buf: &PathBuf) -> io::Result<usize> {
     // owned usize value to be returned, counts number of files in path_buf
     let mut count: usize = 0;

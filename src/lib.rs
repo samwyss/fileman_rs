@@ -60,7 +60,17 @@ impl Config {
     }
 }
 
+/// RunTask trait allows for all tasks to be run from main.rs
 impl RunTask for Config {
+    /// run_task() matches against Config and runs the corresponding method Variant(task) => task.run_task()
+    /// 
+    /// # Arguments
+    /// 
+    /// `&self` reference to Config enum
+    /// 
+    /// # Errors
+    /// 
+    /// - if Variant(task) => task.run_task() errors
     fn run_task(&self) -> Result<(), io::Error> {
         match self {
             Config::Organize(task) => task.run_task(),

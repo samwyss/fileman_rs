@@ -7,11 +7,13 @@ use std::path::PathBuf;
 /// # Arguments
 ///
 /// `path_buf` a PathBuf that corresponds to a directory
+/// `vec` a mutable vector to place file PathBufs into
 ///
 /// # Errors
 ///
-/// - `path_buf` does not correspond to a directory
-/// - `path_buf` corresponds to a protected object on the file system or maps to a broken link
+/// -`path_buf` does not correspond to a directory
+/// -`path_buf` corresponds to a protected object on the file system or maps to a broken link
+/// - path from item at `path_buf` cannot be obtained
 pub fn collect_files<'a>(
     path_buf: &PathBuf,
     vec: &'a mut Vec<PathBuf>,
