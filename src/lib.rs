@@ -1,11 +1,12 @@
 #![crate_name = "fileman_rs"]
 //! A high-performance file management system for working with large quantities of files written in Rust.
 
-// declaration of module containing useful tools for various tasks
-mod tools;
+// declare cargo crates
+use std::io;
 
-// declaration for all task modules
+// declare local modules
 mod organize;
+mod tools;
 
 pub trait RunTask {
     /// task definition that allows Config to run a task outlined in a task module
@@ -13,7 +14,7 @@ pub trait RunTask {
     /// # Arguments
     ///
     /// `&self` - a reference to Config enum
-    fn run_task(&self) -> Result<(), String>;
+    fn run_task(&self) -> Result<(), io::Error>;
 }
 
 #[derive(Debug, PartialEq, Eq)]
@@ -59,8 +60,18 @@ impl Config {
     }
 }
 
+/// RunTask trait allows for all tasks to be run from main.rs
 impl RunTask for Config {
-    fn run_task(&self) -> Result<(), String> {
+    /// run_task() matches against Config and runs the corresponding method Variant(task) => task.run_task()
+    /// 
+    /// # Arguments
+    /// 
+    /// `&self` reference to Config enum
+    /// 
+    /// # Errors
+    /// 
+    /// - if Variant(task) => task.run_task() errors
+    fn run_task(&self) -> Result<(), io::Error> {
         match self {
             Config::Organize(task) => task.run_task(),
         }
